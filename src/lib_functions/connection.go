@@ -2,6 +2,7 @@ package lib_functions
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 )
@@ -28,16 +29,35 @@ func openConn(host, port, user, password, dbname string) (*sql.DB, error) {
 		panic(err) // TRATAR MELHOR O ERRO
 	}
 	err = db.Ping()
+
+	if err != nil {
+		fmt.Printf("erro:", err)
+		return db, err
+	}
 	return db, err
 }
 
-// Funcao exportada para lib aceitando Struct
+// Funcao de conexao ao banco esperando parametro como struct com os seguintes dados:
+//
+//	{
+//		host     string
+//		port     string
+//		user     string
+//		password string
+//		dbname   string
+//	}
 func ConnectionStruct(params sConnection) sdata {
 	res, err := openConn(params.host, params.port, params.user, params.password, params.dbname)
 	return sdata{res: res, err: err}
 }
 
-// Funcao exportada para lib aceitando Strings
+// Funcao de conexao ao banco esperando parametros com as seguintes strings:
+//
+//	host     string
+//	port     string
+//	user     string
+//	password string
+//	dbname   string
 func ConnectionString(host, port, user, password, dbname string) sdata {
 	res, err := openConn(host, port, user, password, dbname)
 	return sdata{res: res, err: err}
