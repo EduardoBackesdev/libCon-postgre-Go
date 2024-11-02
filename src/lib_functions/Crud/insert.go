@@ -7,11 +7,7 @@ import (
 	"strings"
 )
 
-// type okStruct struct {
-// 	Message string
-// 	status  int
-// 	Err     Error()
-// }
+// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL
 
 // Funcao principal para query de insert
 func insertLib(table string, coluns []string, values []string) {
@@ -38,6 +34,13 @@ func insertLib(table string, coluns []string, values []string) {
 	}
 }
 
+// Funcao de Insert, voce precisa passar uma string com o nome da tabela,
+// um array de strings com as colunas, e um array de strings com os valores
+// Funcao os seguintes parametros:
+//
+//	nome tabela     string
+//	colunas     	array[]strings
+//	values    		array[]strings
 func Insert(t string, c []string, v []string) {
 	insertLib(t, c, v)
 }
