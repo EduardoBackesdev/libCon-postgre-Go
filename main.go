@@ -1,10 +1,11 @@
 package main
 
 import (
-	lib_functions "lib/src/lib_functions/Connection"
+	config "lib/src/lib_functions/Connection"
+	insert "lib/src/lib_functions/Crud"
 )
 
 func main() {
-	lib_functions.ConnectionConfig()
-
+	config.ConnectionConfig("localhost", "5432", "postgres", "admin", "tester")
+	insert.Insert("tabela_teste", []string{"nome"}, []string{"Eduardo"})
 }
