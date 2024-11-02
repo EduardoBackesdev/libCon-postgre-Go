@@ -4,19 +4,22 @@ import (
 	"errors"
 	"fmt"
 	db "lib/src/lib_functions/Connection"
-	"strings"
+	"reflect"
 )
 
-// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL
+// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL, ADICIONAR INSER COM OS DADOS DO BANCO SE NAO VAI DA B.O
 
 // Funcao principal para query de insert
-func insertLib(table string, coluns []string, values []string) {
-	newValues := []string{}
+func insertLib(table string, coluns []string, values []interface{}) {
+	var newValues []interface{}
 	for _, e := range values {
-		fmt.Println(e)
-		a := ""
-		a = "'" + e + "'"
-		newValues = append(newValues, a)
+		fmt.Println(reflect.TypeOf(e))
+		if reflect.TypeOf(e) == reflect.TypeOf("") {
+			a := ""
+			a = "'" + e.(string) + "'"
+			newValues = append(newValues, a)
+		}
+
 	}
 	db, err := db.OpenConn()
 	if err != nil {
@@ -25,13 +28,13 @@ func insertLib(table string, coluns []string, values []string) {
 		return
 	}
 	defer db.Close()
-	queryString := "INSERT INTO " + table + " (" + strings.Join(coluns, ",") + ") VALUES (" + strings.Join(newValues, ",") + ")"
-	fmt.Println(queryString)
-	_, errQuery := db.Exec(queryString)
-	if errQuery != nil {
-		fmt.Errorf("Error: ", errQuery)
-		return
-	}
+	// queryString := "INSERT INTO " + table + " (" + strings.Join(coluns, ",") + ") VALUES (" + strings.Join(newValues, ",") + ")"
+	// fmt.Println(queryString)
+	// _, errQuery := db.Exec(queryString)
+	// if errQuery != nil {
+	// 	fmt.Errorf("Error: ", errQuery)
+	// 	return
+	// }
 }
 
 // Funcao de Insert, voce precisa passar uma string com o nome da tabela,
@@ -41,6 +44,6 @@ func insertLib(table string, coluns []string, values []string) {
 //	nome tabela     string
 //	colunas     	array[]strings
 //	values    		array[]strings
-func Insert(t string, c []string, v []string) {
+func Insert(t string, c []string, v []interface{}) {
 	insertLib(t, c, v)
 }
