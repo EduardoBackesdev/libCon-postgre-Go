@@ -5,22 +5,24 @@ import (
 	"fmt"
 	db "lib/src/lib_functions/Connection"
 	"reflect"
+	"strings"
 )
 
 // OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL, ADICIONAR INSER COM OS DADOS DO BANCO SE NAO VAI DA B.O
 
 // Funcao principal para query de insert
 func insertLib(table string, coluns []string, values []interface{}) {
-	var newValues []interface{}
+	newValues := []any{}
 	for _, e := range values {
-		fmt.Println(reflect.TypeOf(e))
 		if reflect.TypeOf(e) == reflect.TypeOf("") {
 			a := ""
 			a = "'" + e.(string) + "'"
 			newValues = append(newValues, a)
+		} else {
+			newValues = append(newValues, e)
 		}
-
 	}
+	fmt.Println(strings.Join(newValues))
 	db, err := db.OpenConn()
 	if err != nil {
 		errString := errors.New("Error in connect")
