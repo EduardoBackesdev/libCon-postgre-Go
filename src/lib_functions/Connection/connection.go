@@ -32,7 +32,7 @@ var DataDb dataDbStruct
 func ConnectionConfig(host, port, user, password, dbname string) (string, error) {
 	if host == "" || port == "" || user == "" || password == "" || dbname == "" {
 		errStrings := errors.New("Check the fields and try again!")
-		fmt.Errorf(errStrings.Error())
+		fmt.Println("Error: ", errStrings)
 		return "", errStrings
 	}
 	DataDb = dataDbStruct{
@@ -49,7 +49,7 @@ func ConnectionConfig(host, port, user, password, dbname string) (string, error)
 func OpenConn() (*sql.DB, error) {
 	db, err := sql.Open("postgres", "host="+DataDb.host+" port="+DataDb.port+" user="+DataDb.user+" password="+DataDb.password+" dbname="+DataDb.dbname+" sslmode=disable")
 	if err != nil {
-		fmt.Errorf(err.Error())
+		fmt.Println("Error: ", err)
 		return nil, err
 	}
 	err = db.Ping()
