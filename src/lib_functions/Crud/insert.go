@@ -1,42 +1,28 @@
 package lib_functions
 
 import (
-	"errors"
 	"fmt"
+	join "lib/lib_utils"
 	db "lib/src/lib_functions/Connection"
-	"reflect"
 	"strings"
 )
 
-// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL, ADICIONAR INSER COM OS DADOS DO BANCO SE NAO VAI DA B.O
+// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL
 
 // Funcao principal para query de insert
 func insertLib(table string, coluns []string, values []interface{}) {
-	newValues := []any{}
-	for _, e := range values {
-		if reflect.TypeOf(e) == reflect.TypeOf("") {
-			a := ""
-			a = "'" + e.(string) + "'"
-			newValues = append(newValues, a)
-		} else {
-			newValues = append(newValues, e)
-		}
-	}
-	fmt.Println(strings.Join(newValues))
 	db, err := db.OpenConn()
 	if err != nil {
-		errString := errors.New("Error in connect")
-		fmt.Errorf("Error", errString)
+		fmt.Println("Error", err)
 		return
 	}
 	defer db.Close()
-	// queryString := "INSERT INTO " + table + " (" + strings.Join(coluns, ",") + ") VALUES (" + strings.Join(newValues, ",") + ")"
-	// fmt.Println(queryString)
-	// _, errQuery := db.Exec(queryString)
-	// if errQuery != nil {
-	// 	fmt.Errorf("Error: ", errQuery)
-	// 	return
-	// }
+	queryString := "INSERT INTO " + table + " (" + strings.Join(coluns, ",") + ") VALUES (" + join.JoinLib(values) + ")"
+	_, errQuery := db.Exec(queryString)
+	if errQuery != nil {
+		fmt.Println("Error: ", errQuery)
+		panic(errQuery)
+	}
 }
 
 // Funcao de Insert, voce precisa passar uma string com o nome da tabela,
