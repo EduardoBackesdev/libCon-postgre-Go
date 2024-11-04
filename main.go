@@ -7,8 +7,8 @@ import (
 
 func main() {
 	var a []interface{}
-	a = []interface{}{"Andriele"}
+	a = []interface{}{"Andriele", 25}
 	config.ConnectionConfig("localhost", "5432", "postgres", "ADMIN", "tester")
-	crud.Insert("tabela_teste", []string{"nomesf"}, a)
+	crud.Update("tabela_teste", []string{"nome", "idade"}, a)
 
 }

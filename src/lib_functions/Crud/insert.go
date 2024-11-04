@@ -2,12 +2,10 @@ package lib_functions
 
 import (
 	"fmt"
-	join "lib/lib_utils"
 	db "lib/src/lib_functions/Connection"
+	join "lib/src/lib_utils"
 	"strings"
 )
-
-// OBS: VERIFICAR PORQUE NAO DA ERRO NO SQL
 
 // Funcao principal para query de insert
 func insertLib(table string, coluns []string, values []interface{}) {
