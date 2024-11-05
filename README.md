@@ -148,7 +148,7 @@ Retorno:
 Atualiza dados em uma tabela PostgreSQL. Para usar, passe o nome da tabela, os nomes das colunas a serem atualizadas e os valores correspondentes.
 
 Parâmetros:
-tabela: Nome da tabela onde os dados serão atualizados.
+tabela: Nome da tabela onde os dados serão atualizados.<br/>
 colunas: Lista de colunas que precisam ser atualizadas.
 valores: Lista de novos valores a serem atribuídos às colunas.
 
