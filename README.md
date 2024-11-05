@@ -1,8 +1,13 @@
 # libCon-Postgre-GO
 
-Esta é uma biblioteca Go para realizar operações básicas de CRUD (Create, Read, Update, Delete) em um banco de dados PostgreSQL. Ela oferece funções para inserir, selecionar, atualizar e deletar dados de tabelas no banco de dados de forma simples e eficaz.
+```O Fim do CRUD Repetitivo no PostgreSQL```
+O libCon-Postgre-Go é a biblioteca Go que acaba com a dor de cabeça de criar operações CRUD para cada tabela no seu banco de dados PostgreSQL. Em vez de escrever o mesmo código de inserção, leitura, atualização e exclusão toda vez, você agora pode fazer isso de forma automática, rápida e eficiente.
 
-Instalação
+```Por que usar?```
+Você já cansou de criar manualmente funções de CRUD para cada tabela do seu banco de dados? O libCon-Postgre-Go simplifica todo esse processo e encurta o caminho. Agora você pode gerar facilmente operações completas de banco de dados sem perder tempo escrevendo código repetitivo.
+Com esta biblioteca, você configura a conexão uma vez e, depois, pode realizar operações em qualquer tabela apenas chamando as funções com os parâmetros necessários. Não é mais necessário ficar implementando o CRUD do zero toda vez que surgir uma nova tabela — basta usar o que já está pronto.
+
+# Instalação
 Para usar a biblioteca, basta instalar o pacote diretamente utilizando o Go Modules.
 
 Instalação via go get:
