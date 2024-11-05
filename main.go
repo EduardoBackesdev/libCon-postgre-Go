@@ -7,8 +7,8 @@ import (
 
 func main() {
 	var a []interface{}
-	a = []interface{}{"Andriele", 25, "Oliver"}
-	config.ConnectionConfig("localhost", "5432", "postgres", "admin", "tester")
-	crud.Update("tabela_teste", []string{"nome", "idade", "cachorro"}, a)
+	a = []interface{}{"Andriele", 25}
+	config.ConnectionConfig("localhost", "5432", "postgres", "ADMIN", "tester")
+	crud.Update("tabela_teste", []string{"nome", "idade"}, a)
 
 }

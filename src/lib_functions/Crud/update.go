@@ -26,7 +26,6 @@ func update(tabela string, colunas []string, values []interface{}) {
 		}
 	}
 	queryString := "UPDATE " + tabela + " set " + strings.Join(updateValues, ", ")
-	fmt.Println(queryString)
 	_, errs := db.Exec(queryString)
 	if errs != nil {
 		fmt.Println("Error: ", errs)
