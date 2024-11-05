@@ -7,8 +7,6 @@ import (
 	"strings"
 )
 
-// VERIFICAR ERRO NOS FOR
-
 // Funcao principal para query de update
 func update(tabela string, colunas []string, values []interface{}) {
 	updateValues := []string{}
@@ -19,27 +17,32 @@ func update(tabela string, colunas []string, values []interface{}) {
 	}
 	defer db.Close()
 	i := joinTwo.JoinLibTwo(values)
-	for _, e := range colunas {
-		for _, n := range i {
+	for v, e := range colunas {
+		for range i {
 			c := ""
-			c = e + " = " + n
+			c = e + " = " + i[v]
 			updateValues = append(updateValues, c)
+			break
 		}
 	}
-	queryString := "UPDATE " + tabela + " set " + strings.Join(updateValues, ",")
+	queryString := "UPDATE " + tabela + " set " + strings.Join(updateValues, ", ")
 	fmt.Println(queryString)
-	// _, errs := db.Exec(queryString)
-	// if errs != nil {
-	// 	fmt.Println("Error: ", errs)
-	// 	return
-	// }
+	_, errs := db.Exec(queryString)
+	if errs != nil {
+		fmt.Println("Error: ", errs)
+		return
+	}
 }
 
-// Funcao de select para selecionar todos os itens de uma seguinte tabela,
+// Funcao de update para atualizar as colunas escolhidas do banco,
 // voce precisa passar uma string com o nome da tabela,
+// um array de strings com as colunas,
+// um array dos valores
 // Funcao recebe os seguintes parametros:
 //
 //	tabela 			string
+//	colunas 		[]string
+//	values 			[]interface{}
 func Update(t string, c []string, v []interface{}) {
 	update(t, c, v)
 }
