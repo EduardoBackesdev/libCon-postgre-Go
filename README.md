@@ -40,7 +40,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/EduardoBackesdev/go-crud-lib/lib_functions"
+	"github.com/EduardoBackesdev/libCon-postgre-Go/lib_functions"
 )
 
 func main() {
@@ -61,7 +61,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/EduardoBackesdev/go-crud-lib/lib_functions"
+	"github.com/EduardoBackesdev/libCon-postgre-Go/lib_functions"
 )
 
 func main() {
@@ -93,7 +93,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/EduardoBackesdev/go-crud-lib/lib_functions"
+	"github.com/EduardoBackesdev/libCon-postgre-Go/lib_functions"
 )
 
 func main() {
@@ -113,7 +113,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/EduardoBackesdev/go-crud-lib/lib_functions"
+	"github.com/EduardoBackesdev/libCon-postgre-Go/lib_functions"
 )
 
 func main() {
@@ -148,7 +148,7 @@ Retorno:
 Atualiza dados em uma tabela PostgreSQL. Para usar, passe o nome da tabela, os nomes das colunas a serem atualizadas e os valores correspondentes.
 
 Parâmetros:
-tabela: Nome da tabela onde os dados serão atualizados.<br/>
+tabela: Nome da tabela onde os dados serão atualizados.
 colunas: Lista de colunas que precisam ser atualizadas.
 valores: Lista de novos valores a serem atribuídos às colunas.
 
